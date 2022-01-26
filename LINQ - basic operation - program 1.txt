@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace ProgrammingLanguages
+{
+  class Program
+  {
+    static void Main()
+    {
+      List<Language> languages = File.ReadAllLines("./languages.tsv")
+        .Skip(1)
+        .Select(line => Language.FromTsv(line))
+        .ToList();
+        // foreach(var l in languages){
+        //   Console.WriteLine(l.Prettify());
+        // }
+      //   var basicInfo = languages.Select(h => $"{h.Year} {h.Name} {h.ChiefDeveloper}");
+      //   // foreach(var b in basicInfo){
+      //   //   Console.WriteLine(b);
+      //   // }
+      //   var cReleased = languages.Where(h => h.Name =="C#");
+      //   foreach(var c in cReleased){
+      //     Console.WriteLine(c.Prettify());
+      //   }
+        
+      //   var microsoft = languages.Where(h => h.ChiefDeveloper =="Microsoft");
+      //    foreach(var c in microsoft){
+      //     Console.WriteLine(c.Prettify());
+      //   }
+      //  var lisp = languages.Where(h => h.Predecessors =="Microsoft");
+      //    foreach(var c in lisp){
+      //     Console.WriteLine(c.Prettify());
+      //   }
+        // var scripts = languages
+        // .Where(h => h.Name.Contains("Script"))
+        // .Select (h => h.Name);
+        // foreach(var s in scripts){
+        //   Console.WriteLine(s);
+        // }
+        Console.WriteLine(languages.Count());
+
+        var years = languages
+        .Where( y => y.Year >= 1995 && y.Year <= 2005)
+        .Select( y => $"{y.Name} was invented in {y.Year}");
+      Console.WriteLine(years.Count());
+      foreach(var y in years){
+      Console.WriteLine(y);
+      }
+
+        
+    }
+    public static void PrettyPrintAll(IEnumerable<Language> langs){
+    foreach(Language l in langs){
+      Console.WriteLine(l.Prettify());
+    }
+    }
+    public static void PrintAlL(IEnumerable<Object> sequence){
+        foreach(Object o in sequence){
+          Console.WriteLine(o);
+        }
+    }
+  }
+}
